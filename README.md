@@ -109,30 +109,30 @@ TopicVista is a complete, modular pipeline for unsupervised document clustering 
 
 ```mermaid
 flowchart TD
-    A[Raw Dataset: 20 Newsgroups] --> B(Preprocessing: Cleaning, Tokenization, Lemmatization)
-    B --> C1(TF-IDF Vectorizer)
-    B --> C2(Count Vectorizer)
-    C1 --> D1(K-means Clustering)
-    C2 --> D2(LDA Topic Modeling (sklearn & Gensim))
-    D1 --> E5(Cluster/Category Analysis)
-    D2 --> E3(Word Clouds)
-    D2 --> E4(pyLDAvis)
-    D2 --> E6(Document-Topic Heatmaps)
-    D1 --> F(Streamlit Interactive App)
+    A[Raw Dataset: 20 Newsgroups] --> B[Preprocessing]
+    B --> C1[TF-IDF Vectorizer]
+    B --> C2[Count Vectorizer]
+    C1 --> D1[K-means Clustering]
+    C2 --> D2[LDA Topic Modeling]
+    D1 --> E1[Cluster/Category Analysis]
+    D2 --> E2[Word Clouds]
+    D2 --> E3[pyLDAvis]
+    D2 --> E4[Document-Topic Heatmaps]
+    D1 --> F[Streamlit Dashboard]
     D2 --> F
-    E5 --> F
+    E1 --> F
+    E2 --> F
     E3 --> F
     E4 --> F
-    E6 --> F
-    D1 --> G(Automated Report)
+    D1 --> G[Automated Report]
     D2 --> G
     F --> G
-    D1 --> H(Saved Models/Vectorizers/Matrices)
+    D1 --> H[Saved Models]
     D2 --> H
     C1 --> H
     C2 --> H
-    E1[t-SNE] --> F
-    E2[UMAP] --> F
+    I[t-SNE] --> F
+    J[UMAP] --> F
 ```
 
 ---
