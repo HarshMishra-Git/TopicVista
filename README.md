@@ -172,16 +172,11 @@ flowchart TD
 
 
 **Harsh Mishra**  
-*Active | Data Science*
+*Summer Intern | Data Science*
 
 - **Contact No:** 8573001132
 - **Email ID:** harshmishra1132@gmail.com
 - **StudentId:** CT_CSI_DS_6094
-- **Start Date:** 28/5/2025
-- **Domain:** Data Science
-- **Stream:** B.tech
-- **Passing Out Year:** 2026
-- **College name:** GLBAJAJ
 - **Batch:** batch 2
 
 ---
