@@ -105,7 +105,7 @@ TopicVista is a complete, modular pipeline for unsupervised document clustering 
 
 ---
 
-## 🏗️ System Architecture (Mermaid Diagram)
+## 🏗️ System Architecture 
 
 ```mermaid
 flowchart TD
