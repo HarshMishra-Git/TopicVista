@@ -109,62 +109,31 @@ TopicVista is a complete, modular pipeline for unsupervised document clustering 
 
 ```mermaid
 flowchart TD
-    subgraph Data
-        A[Raw Dataset: 20 Newsgroups]
-    end
-    subgraph Preprocessing
-        B[Preprocessing: Cleaning, Tokenization, Lemmatization (spaCy/NLTK)]
-    end
-    subgraph Vectorization
-        C1[TF-IDF Vectorizer]
-        C2[Count Vectorizer]
-    end
-    subgraph Modeling
-        D1[K-means Clustering]
-        D2[LDA Topic Modeling (sklearn & Gensim)]
-    end
-    subgraph Visualization
-        E1[t-SNE]
-        E2[UMAP]
-        E3[Word Clouds]
-        E4[pyLDAvis]
-        E5[Cluster/Category Analysis]
-        E6[Document-Topic Heatmaps]
-    end
-    subgraph Dashboard
-        F[Streamlit Interactive App]
-    end
-    subgraph Reporting
-        G[Automated Report (report.py)]
-    end
-    subgraph Storage
-        H[Saved Models/Vectorizers/Matrices]
-    end
-
-    A --> B
-    B --> C1
-    B --> C2
-    C1 --> D1
-    C2 --> D2
-    D1 --> E5
-    D2 --> E3
-    D2 --> E4
-    D2 --> E6
-    D1 --> F
+    A[Raw Dataset: 20 Newsgroups] --> B(Preprocessing: Cleaning, Tokenization, Lemmatization)
+    B --> C1(TF-IDF Vectorizer)
+    B --> C2(Count Vectorizer)
+    C1 --> D1(K-means Clustering)
+    C2 --> D2(LDA Topic Modeling (sklearn & Gensim))
+    D1 --> E5(Cluster/Category Analysis)
+    D2 --> E3(Word Clouds)
+    D2 --> E4(pyLDAvis)
+    D2 --> E6(Document-Topic Heatmaps)
+    D1 --> F(Streamlit Interactive App)
     D2 --> F
-    E1 --> F
-    E2 --> F
+    E5 --> F
     E3 --> F
     E4 --> F
-    E5 --> F
     E6 --> F
-    D1 --> G
+    D1 --> G(Automated Report)
     D2 --> G
     F --> G
-    D1 --> H
+    D1 --> H(Saved Models/Vectorizers/Matrices)
     D2 --> H
     C1 --> H
     C2 --> H
+    E1[t-SNE] --> F
+    E2[UMAP] --> F
+
 ```
 
 ---
