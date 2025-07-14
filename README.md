@@ -133,7 +133,6 @@ flowchart TD
     C2 --> H
     E1[t-SNE] --> F
     E2[UMAP] --> F
-
 ```
 
 ---
