@@ -170,7 +170,6 @@ flowchart TD
 
 ## 🧑‍💻 Developer Details
 
-![image1](image1)
 
 **Harsh Mishra**  
 *Active | Data Science*
