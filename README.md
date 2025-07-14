@@ -1,70 +1,241 @@
 # TopicVista — Discover Hidden Stories in News Data
 
-This project applies unsupervised learning (K-means, LDA) to the 20 Newsgroups dataset for document clustering and topic modeling. It features robust preprocessing, model training, visualization, and an interactive Streamlit app.
+TopicVista is a complete, modular pipeline for unsupervised document clustering and topic modeling on the classic 20 Newsgroups dataset. It leverages K-means clustering and Latent Dirichlet Allocation (LDA) to uncover hidden themes and clusters in news data, featuring robust preprocessing, interactive analysis, and advanced visualizations.
 
-## Features
-- **K-means Clustering** and **LDA Topic Modeling** (scikit-learn & Gensim)
-- **Parallelized preprocessing** (spaCy/NLTK)
-- **Interactive Streamlit dashboard** (`app.py`)
-- **Visualizations**: t-SNE, UMAP, word clouds, pyLDAvis
-- **Automated reporting** (`report.py`)
-- **Model persistence**: Save/load all models and matrices
-- **Extensible, modular codebase**
+---
 
-## Project Structure
-- `main.py`: Core analysis pipeline (`NewsGroupsAnalyzer`)
-- `app.py`: Streamlit dashboard (run with `streamlit run app.py`)
-- `models.py`: Script to train and save all models
-- `preprocess_and_save.py`: Preprocess and save matrices without retraining
-- `visualization_utils.py`, `text_utils.py`: Utility modules
-- `report.py`: Automated report generation
-- `trained_models/`: Saved models, vectorizers, and matrices
-- `tests/`: Unit tests
-- `twenty+newsgroups/`: Raw dataset
+## 🚀 Features
 
-## Setup
-1. **Install dependencies**:
+- **K-means Clustering** and **LDA Topic Modeling**  
+  (Built with scikit-learn & Gensim)
+- **Parallelized Preprocessing**  
+  (spaCy & NLTK for batch cleaning, tokenization, lemmatization)
+- **Interactive Streamlit Dashboard**  
+  - Multi-page UI for prediction, clustering, topic analysis, and advanced analytics
+- **Visualizations**  
+  - t-SNE, UMAP, word clouds, pyLDAvis, cluster/category analysis, document-topic heatmaps
+- **Automated Reporting**  
+  - Markdown report generation (`report.py`)
+- **Advanced Analytics**  
+  - Cluster purity, coherence scores, mutual information, completeness
+- **Model Persistence**  
+  - Save/load all models and matrices for reproducibility
+- **Extensible, Modular Codebase**  
+  - Add new algorithms, visualizations, pages with ease
+
+---
+
+## 🗂️ Project Structure
+
+- `main.py`  
+  Core analysis pipeline (`NewsGroupsAnalyzer` class)
+- `app.py`  
+  Streamlit dashboard (`streamlit run app.py`)
+- `models.py`  
+  Train and save all models
+- `preprocess_and_save.py`  
+  Preprocess and save matrices without retraining
+- `visualization_utils.py`, `text_utils.py`  
+  Utility modules for plotting and text processing
+- `report.py`  
+  Automated markdown report generation
+- `trained_models/`  
+  Saved models, vectorizers, and matrices
+- `tests/`  
+  Unit tests for core modules
+- `twenty+newsgroups/`  
+  Raw dataset
+
+---
+
+## ⚙️ Setup
+
+1. **Install dependencies**
    ```bash
    pip install -r requirements.txt
    ```
-2. **Download spaCy model** (if not present):
+2. **Download spaCy model** (if not present)
    ```bash
    python -m spacy download en_core_web_sm
    ```
-3. **Prepare dataset**: Ensure the 20 Newsgroups data is in `twenty+newsgroups/20_newsgroups/`.
+3. **Prepare dataset**
+   - Ensure the 20 Newsgroups data is in `twenty+newsgroups/20_newsgroups/`
 
-## Usage
-- **Train models**:
+---
+
+## ▶️ Usage
+
+- **Train models**
   ```bash
   python models.py
   ```
-- **Preprocess only** (no retrain):
+- **Preprocess only** (no retrain)
   ```bash
   python preprocess_and_save.py
   ```
-- **Run Streamlit app**:
+- **Run Streamlit app**
   ```bash
   streamlit run app.py
   ```
-- **Generate report**:
+- **Generate report**
   ```bash
   python report.py
   ```
-- **Run tests**:
+- **Run tests**
   ```bash
   python -m unittest discover tests
   ```
 
-## Troubleshooting
-- If you see spaCy model errors, run the download command above.
-- If models are missing, run `models.py` to train and save them.
-- For large datasets, first run `preprocess_and_save.py` to speed up app startup.
-- All code is type-checked and linter-clean (no errors expected).
+---
 
-## Extending
-- Add new clustering or topic modeling methods in `main.py`.
-- Add new visualizations in `visualization_utils.py`.
-- Add new Streamlit pages in `app.py`.
+## 💡 How It Works
 
-## License
-MIT License. 
+1. **Load & Clean Data:**  
+   Documents are loaded and preprocessed in parallel batches for speed.
+2. **Vectorization:**  
+   TF-IDF and CountVectorizer transform text to numerical form.
+3. **Clustering:**  
+   K-means groups documents into clusters.
+4. **Topic Modeling:**  
+   LDA (both scikit-learn and Gensim) discovers latent topics.
+5. **Visualization:**  
+   t-SNE, UMAP, word clouds, pyLDAvis, cluster/category/topic analyses.
+6. **Interactive App:**  
+   Streamlit dashboard lets users explore clusters, predict topics, and analyze document distributions.
+
+---
+
+## 🏗️ System Architecture (Mermaid Diagram)
+
+```mermaid
+flowchart TD
+    subgraph Data
+        A[Raw Dataset: 20 Newsgroups]
+    end
+    subgraph Preprocessing
+        B[Preprocessing: Cleaning, Tokenization, Lemmatization (spaCy/NLTK)]
+    end
+    subgraph Vectorization
+        C1[TF-IDF Vectorizer]
+        C2[Count Vectorizer]
+    end
+    subgraph Modeling
+        D1[K-means Clustering]
+        D2[LDA Topic Modeling (sklearn & Gensim)]
+    end
+    subgraph Visualization
+        E1[t-SNE]
+        E2[UMAP]
+        E3[Word Clouds]
+        E4[pyLDAvis]
+        E5[Cluster/Category Analysis]
+        E6[Document-Topic Heatmaps]
+    end
+    subgraph Dashboard
+        F[Streamlit Interactive App]
+    end
+    subgraph Reporting
+        G[Automated Report (report.py)]
+    end
+    subgraph Storage
+        H[Saved Models/Vectorizers/Matrices]
+    end
+
+    A --> B
+    B --> C1
+    B --> C2
+    C1 --> D1
+    C2 --> D2
+    D1 --> E5
+    D2 --> E3
+    D2 --> E4
+    D2 --> E6
+    D1 --> F
+    D2 --> F
+    E1 --> F
+    E2 --> F
+    E3 --> F
+    E4 --> F
+    E5 --> F
+    E6 --> F
+    D1 --> G
+    D2 --> G
+    F --> G
+    D1 --> H
+    D2 --> H
+    C1 --> H
+    C2 --> H
+```
+
+---
+
+## 🧪 Advanced Analytics
+
+- **Cluster Purity & Metrics:**  
+  Adjusted Rand Index, Homogeneity, Normalized Mutual Info, Completeness
+- **Category Distribution:**  
+  Analyze how news categories map to clusters
+- **Document-Topic Distribution:**  
+  Interactive heatmaps and probability plots
+
+---
+
+## 📈 Extending
+
+- Add new clustering or topic modeling methods in `main.py`
+- Add visualizations in `visualization_utils.py`
+- Add Streamlit pages in `app.py`
+- Test on other datasets by updating the data path
+
+---
+
+## 🛠️ Dependencies
+
+- **scikit-learn:** Clustering, evaluation
+- **Gensim:** Topic modeling
+- **NLTK/spaCy:** NLP preprocessing
+- **Streamlit:** Interactive dashboard
+- **pyLDAvis:** Topic visualization
+- **Matplotlib/Seaborn:** Plotting
+
+---
+
+## 🧑‍💻 Developer Details
+
+![image1](image1)
+
+**Harsh Mishra**  
+*Active | Data Science*
+
+- **Contact No:** 8573001132
+- **Email ID:** harshmishra1132@gmail.com
+- **StudentId:** CT_CSI_DS_6094
+- **Start Date:** 28/5/2025
+- **Domain:** Data Science
+- **Stream:** B.tech
+- **Passing Out Year:** 2026
+- **College name:** GLBAJAJ
+- **Batch:** batch 2
+
+---
+
+## 📝 License
+
+MIT License.
+
+---
+
+## 🤝 Contributing
+
+PRs and suggestions are welcome! Please open an issue for bugs or feature requests.
+
+---
+
+## 📚 References
+
+- [20 Newsgroups Dataset](http://archive.ics.uci.edu/ml/datasets/Twenty+Newsgroups)
+- [scikit-learn Documentation](https://scikit-learn.org/stable/)
+- [Gensim Documentation](https://radimrehurek.com/gensim/)
+- [Streamlit Docs](https://docs.streamlit.io/)
+
+---
